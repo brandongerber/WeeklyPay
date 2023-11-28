@@ -1,0 +1,112 @@
+/*
+ * Brandon Gerber
+ * COP1250C
+ * 11/27/2023
+ * A Program to calculate weeklypay of an employer 
+ */
+
+/*
+ * start
+
+# arrays
+name
+hoursWorked
+hourlyPay
+weeklyEarnings
+all size 4
+
+// initialize scanner to read user input
+
+ # input employee information
+for i in range(0, 4):
+    print("input employee #" + (i + 1) + " information.")
+    print("enter name: ")
+    names[i] = readInput()
+    print("enter hours worked: ")
+    hoursWorked[i] = readInput()
+    consumeNewline()
+    print("enter hourly pay: ")
+    hourlyPay[i] = readInput()
+    consumeNewline()
+end for
+
+
+# weeklyEarnings
+for i = 0 to 3 do
+    calculate weeklyEarnings[i] = hoursWorked[i] * hourlyPay[i]
+end for
+
+# display results
+display "Results:"
+display "Name\tHours Worked\tHourly Pay\tWeekly Earnings"
+display "------------------------------------------------------"
+for i = 0 to 3 do
+    display names[i] + "\t" + hoursWorked[i] + "\t\t$" + hourlyPay[i] + "\t\t$" + weeklyEarnings[i]
+end for
+
+close scanner
+
+end of code
+
+
+ */
+import java.util.Scanner;
+
+public class WeeklyPay {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String[] names = new String[4];
+        double[] hoursWorked = new double[4];
+        double[] hourlyPay = new double[4];
+        double[] weeklyEarnings = new double[4];
+
+        // getinfo for getting employees information
+        getInfo(names, hoursWorked, hourlyPay, scanner);
+
+        // calculateweeklyearnings to calculate the hoursworked by hourlypay to get the weeklyearnings 
+        calculateWeeklyEarnings(hoursWorked, hourlyPay, weeklyEarnings);
+
+        // displayinfo to display the workers final results
+        displayInfo(names, hoursWorked, hourlyPay, weeklyEarnings);
+
+        scanner.close();
+    }
+
+    // method for getting information from employee
+    public static void getInfo(String[] names, double[] hoursWorked, double[] hourlyPay, Scanner scanner) {
+        for (int i = 0; i < 4; i++) {
+            System.out.println("Input Employee #" + (i + 1) + " Information.");
+
+            System.out.print("Enter name: ");
+            names[i] = scanner.nextLine();
+
+            System.out.print("Enter hours worked: ");
+            hoursWorked[i] = scanner.nextDouble();
+            scanner.nextLine(); // Consume newline left by nextDouble()
+
+            System.out.print("Enter hourly pay: ");
+            hourlyPay[i] = scanner.nextDouble();
+            scanner.nextLine(); // Consume newline left by nextDouble()
+        }
+    }
+
+    // method for calculating the weekly earnings
+    public static void calculateWeeklyEarnings(double[] hoursWorked, double[] hourlyPay, double[] weeklyEarnings) {
+        for (int i = 0; i < 4; i++) {
+            weeklyEarnings[i] = hoursWorked[i] * hourlyPay[i];
+        }
+    }
+
+    // method for displaying information as result of previous methods
+    public static void displayInfo(String[] names, double[] hoursWorked, double[] hourlyPay, double[] weeklyEarnings) {
+        System.out.println("\nResults:");
+        System.out.println("Name\tHours Worked\tHourly Pay\tWeekly Earnings");
+        System.out.println("------------------------------------------------------");
+        for (int i = 0; i < 4; i++) {
+            System.out.printf("%s\t%.0f\t\t$%.2f\t\t$%.2f\n",
+                    names[i], hoursWorked[i], hourlyPay[i], weeklyEarnings[i]);
+        }
+    }
+}
